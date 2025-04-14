@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ListVehiclesScreen extends StatelessWidget {
   final List<String> vehicles = List.generate(30, (index) => 'Vehículo ${index + 1}');
 
+  ListVehiclesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

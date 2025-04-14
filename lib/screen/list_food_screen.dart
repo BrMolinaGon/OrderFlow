@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ListFoodScreen extends StatelessWidget {
   final List<String> foods = List.generate(30, (index) => 'Comida ${index + 1}');
 
+  ListFoodScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

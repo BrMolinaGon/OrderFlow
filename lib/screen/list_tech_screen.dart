@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ListTechScreen extends StatelessWidget {
   final List<String> techItems = List.generate(30, (index) => 'Dispositivo ${index + 1}');
 
+  ListTechScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

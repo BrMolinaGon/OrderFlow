@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ListSportsScreen extends StatelessWidget {
   final List<String> techItems = List.generate(30, (index) => 'Deporte ${index + 1}');
 
+  ListSportsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
