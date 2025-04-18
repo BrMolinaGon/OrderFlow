@@ -5,13 +5,9 @@ class AppRoutes {
   static const initialRoute = 'home';
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    'home': (context) => const HomeScreen(),
-    'initial': (context) => const InitialScreen(), // ¡Añade esta línea!
-    'detail': (context) => const DetailScreen(),
-    'list_food': (context) => ListFoodScreen(),
-    'list_vehicles': (context) => ListVehiclesScreen(),
-    'list_tech': (context) => ListTechScreen(),
-    'list_sports': (context) => ListSportsScreen(),
+    'home': (context) =>  const HomeScreen(),
+    //'home2': (context) => const HomeScreen2(),
+    'error': (context) => const ErrorScreen(),
   };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {

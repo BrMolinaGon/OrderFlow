@@ -1,89 +1,182 @@
 import 'package:flutter/material.dart';
+import 'package:orderflow2/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+    const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // Contenedor superior (20%)
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.2,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.blue,
-                  Colors.lightBlue,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                'Bienvenido',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Roboto',
-                ),
-              ),
-            ),
-          ),
-          
-          // Contenedor central (60%)
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.6,
-            color: Colors.grey[200],
-            child: Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, 'initial');
-                },
-                child: const Text(
-                  'Ir a Pantalla Inicial',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
-          ),
-          
-          // Contenedor inferior (20%)
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.2,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.lightBlue, Colors.blue],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
-            ),
-            child: const Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Brayan Molina', style: TextStyle(color: Colors.white)),
-                    SizedBox(width: 10),
-                    Text('Nicolas Toledo', style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start, // Alinear hacia la izquierda
+          children: [
+            Image.network(
+              'https://i.imgur.com/Vr7IWdq.png', // URL de la imagen
+              height: 50, // Altura de la imagen
       ),
+    ],
+  ),
+  centerTitle: false, // Deshabilitar centrado del título
+  backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.search, color: Colors.black),
+      onPressed: () {
+        // Acción al presionar el icono de notificaciones
+        print('Buscar');
+      },
+    ),
+    IconButton(
+      icon: const Icon(Icons.menu, color: Colors.black),
+      onPressed: () {
+        // Acción al presionar el icono de notificaciones
+        print('Abrir menu');
+      },
+    ),
+  ],
+),     
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Primer ContentDetailView
+            Evento1(),
+
+            Divider(height: 40, thickness: 1, color: const Color.fromARGB(255, 138, 17, 17)),
+
+            // Segundo ContentDetailView
+            Evento2(),
+
+            Divider(height: 40, thickness: 1, color: Colors.grey[300]),
+
+            // Tercer ContentDetailView
+            Evento3(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ContentDetailView extends StatelessWidget {
+  final String appBarTitle;
+  final Color? appBarColor;
+  final String imageUrl;
+  final String dateText;
+  final String mainText;
+  final String socialUsername;
+  final String socialLogoUrl;
+  final VoidCallback? onSocialTap;
+
+  const ContentDetailView({
+    super.key,
+    this.appBarTitle = 'Detalle',
+    this.appBarColor,
+    required this.imageUrl,
+    required this.dateText,
+    required this.mainText,
+    this.socialUsername = '@uautonomadechile',
+    this.socialLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png',
+    this.onSocialTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Encabezado opcional (simulando un mini-AppBar)
+        if (appBarTitle != 'Detalle')
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              appBarTitle,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: appBarColor ?? Colors.blue[800],
+              ),
+            ),
+          ),
+
+        // Imagen
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.network(
+            imageUrl,
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                height: 200,
+                color: Colors.grey[200],
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                ),
+              );
+            },
+            errorBuilder: (context, error, stackTrace) => Container(
+              height: 200,
+              color: Colors.grey[200],
+              child: Center(
+                child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 16),
+
+        // Aca se pone lo del estilo de la fecha
+        Text(
+          dateText,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey[800],
+          ),
+        ),
+        SizedBox(height: 12),
+
+        // Estilo del contenido
+        Text(
+          mainText,
+          style: TextStyle(
+            fontSize: 16,
+            height: 1.4,
+          ),
+        ),
+        SizedBox(height: 20),
+
+        // Logo de la izquiera
+        InkWell(
+          onTap: onSocialTap,
+          child: Row(
+            children: [
+              Image.network(
+                socialLogoUrl,
+                height: 24,
+                width: 24,               
+              ),
+              SizedBox(width: 8),
+              Text(
+                socialUsername,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: const Color.fromARGB(255, 22, 89, 128),//color del link
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
