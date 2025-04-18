@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orderflow2/screen/home_screen.dart';
+import 'package:orderflow2/widgets/content_detail_view.dart';
 
 class Evento3 extends StatelessWidget {
   const Evento3({
