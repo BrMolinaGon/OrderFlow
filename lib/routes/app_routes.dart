@@ -5,7 +5,7 @@ class AppRoutes {
   static const initialRoute = 'home';
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    'home': (context) =>  const HomeScreen(),
+    'home': (context) =>   HomeScreen(),
     //'home2': (context) => const HomeScreen2(),
     'error': (context) => const ErrorScreen(),
   };

@@ -18,8 +18,7 @@ class ContentDetailView extends StatelessWidget {
     required this.dateText,
     required this.mainText,
     this.socialUsername = '@uautonomadechile',
-    this.socialLogoUrl =
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png',
+    this.socialLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png',
     this.onSocialTap,
   });
 
@@ -57,32 +56,26 @@ class ContentDetailView extends StatelessWidget {
                 color: Colors.grey[200],
                 child: Center(
                   child: CircularProgressIndicator(
-                    value:
-                        loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
                   ),
                 ),
               );
             },
-            errorBuilder:
-                (context, error, stackTrace) => Container(
-                  height: 200,
-                  color: Colors.grey[200],
-                  child: Center(
-                    child: Icon(
-                      Icons.broken_image,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
+            errorBuilder: (context, error, stackTrace) => Container(
+              height: 200,
+              color: Colors.grey[200],
+              child: Center(
+                child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
+              ),
+            ),
           ),
         ),
         SizedBox(height: 16),
 
-        // Aca se pone lo del estilo de la fecha
+        // Fecha
         Text(
           dateText,
           style: TextStyle(
@@ -93,27 +86,32 @@ class ContentDetailView extends StatelessWidget {
         ),
         SizedBox(height: 12),
 
-        // Estilo del contenido
-        Text(mainText, style: TextStyle(fontSize: 16, height: 1.4)),
+        // Contenido principal
+        Text(
+          mainText,
+          style: TextStyle(
+            fontSize: 16,
+            height: 1.4,
+          ),
+        ),
         SizedBox(height: 20),
 
-        // Logo de la izquiera
+        // Red social
         InkWell(
           onTap: onSocialTap,
           child: Row(
             children: [
-              Image.network(socialLogoUrl, height: 24, width: 24),
+              Image.network(
+                socialLogoUrl,
+                height: 24,
+                width: 24,               
+              ),
               SizedBox(width: 8),
               Text(
                 socialUsername,
                 style: TextStyle(
                   fontSize: 16,
-                  color: const Color.fromARGB(
-                    255,
-                    22,
-                    89,
-                    128,
-                  ), //color del link
+                  color: const Color.fromARGB(255, 22, 89, 128),
                   fontWeight: FontWeight.w500,
                 ),
               ),

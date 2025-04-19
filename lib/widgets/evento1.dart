@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:orderflow2/widgets/content_detail_view.dart';
+import 'package:orderflow2/widgets/content_eventos.dart';
 
 class Evento1 extends StatelessWidget {
-  const Evento1({super.key});
+  const Evento1({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ContentDetailView(
-      imageUrl:
-          'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-      dateText: '09 abril 2025',
-      mainText:
-          'Inauguración del Año Académico 2025 con autoridades universitarias y estudiantes. Evento realizado en el auditorio principal.',
-      appBarTitle: 'Evento Destacado',
+    return EventCard(
+      day: '21',
+      month: 'ABR',
+      title: 'Jornada de Diálisis Dirección Zonal Sur',
+      items: [
+        EventItem(text: '09:00 - 14:00', icon: Icons.access_time),
+        EventItem(text: 'Sede Temuco', icon: Icons.location_on),
+      ],
+      imageUrl: 'https://www.uautonoma.cl/content/uploads/2023/10/jornada-regional-temuco.jpg',
     );
   }
 }

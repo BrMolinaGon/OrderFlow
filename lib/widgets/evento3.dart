@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orderflow2/widgets/content_detail_view.dart';
+import 'package:orderflow2/widgets/content_eventos.dart';
 
 class Evento3 extends StatelessWidget {
   const Evento3({
@@ -8,11 +8,15 @@ class Evento3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContentDetailView(
-      imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-      dateText: '20 abril 2025',
-      mainText: 'Talleres de desarrollo profesional para egresados. Cupos limitados.',
-      appBarColor: Colors.purple[800],
+    return EventCard(
+      day: '22',
+      month: 'ABR',
+      title: 'Exposición de Arte Visual: “Visiones Estudiantiles, una Mirada Universitaria"',
+      items: [
+        EventItem(text: '12:30 - 15:00', icon: Icons.access_time),
+        EventItem(text: 'Sede Temuco', icon: Icons.location_on),
+      ],
+      imageUrl: 'https://www.uautonoma.cl/content/uploads/2025/03/FOTO-lanzamiento-exposicion-mujer-1.jpg',
     );
   }
 }
