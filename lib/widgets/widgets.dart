@@ -15,3 +15,7 @@ export 'package:orderflow2/widgets/evento3.dart';
 
 //Botones
 export 'package:orderflow2/widgets/boton_negro.dart';
+
+//Extras
+export 'package:orderflow2/widgets/conoce_principal.dart';
+export 'package:orderflow2/widgets/conoce_secundario.dart';

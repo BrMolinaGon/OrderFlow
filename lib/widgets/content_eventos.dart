@@ -21,7 +21,6 @@ class EventCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
         
       ),
       child: Column(
@@ -29,7 +28,6 @@ class EventCard extends StatelessWidget {
         children: [
           // Imagen superior
           ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.network(
               imageUrl,
               height: 120,
