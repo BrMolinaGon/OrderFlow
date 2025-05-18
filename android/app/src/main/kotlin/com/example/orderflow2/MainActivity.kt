@@ -1,4 +1,4 @@
-package com.example.orderflow2
+package com.admin.orderflow
 
 import io.flutter.embedding.android.FlutterActivity
 
