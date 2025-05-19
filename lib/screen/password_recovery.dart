@@ -2,26 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:orderflow2/widgets/custom_text_field.dart';
 import 'package:orderflow2/widgets/red_button.dart';
 
-class RegisterScreen extends StatefulWidget {
+class PasswordRecovery extends StatefulWidget {
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<PasswordRecovery> createState() => _PasswordRecoveryState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _PasswordRecoveryState extends State<PasswordRecovery> {
   final FocusNode emailFocus = FocusNode();
-  final FocusNode passwordFocus = FocusNode();
-  final FocusNode confirmFocus = FocusNode();
 
   @override
   void dispose() {
     emailFocus.dispose();
-    passwordFocus.dispose();
-    confirmFocus.dispose();
     super.dispose();
   }
 
-  void _onConfirm() {
-    print('Usuario registrado');
+  void _onSendEmail() {
+    print('Enviar correo de recuperación');
   }
 
   @override
@@ -87,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    '¡Bienvenido a OrderFlow!',
+                    'Cambiar contraseña',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -98,34 +94,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   CustomTextField(
                     label: 'Correo electrónico',
                     focusNode: emailFocus,
-                    textInputAction: TextInputAction.next,
-                    onSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(passwordFocus);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextField(
-                    label: 'Contraseña',
-                    obscureText: true,
-                    focusNode: passwordFocus,
-                    textInputAction: TextInputAction.next,
-                    onSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(confirmFocus);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextField(
-                    label: 'Confirmar contraseña',
-                    obscureText: true,
-                    focusNode: confirmFocus,
                     textInputAction: TextInputAction.done,
                     onSubmitted: (_) {
-                      _onConfirm();
+                      _onSendEmail();
                     },
                   ),
                   const SizedBox(height: 30),
-                  RedButton(text: 'Registrarse', onPressed: _onConfirm),
-                  const SizedBox(height: 20),
+                  RedButton(text: 'Enviar correo', onPressed: _onSendEmail),
                 ],
               ),
             ),

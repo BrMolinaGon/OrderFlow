@@ -6,7 +6,9 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> routes = {
     'login': (context) => LoginScreen(),
+    'login2': (context) => LoginScreen2(),
     'register': (context) => RegisterScreen(),
+    'password': (context) => PasswordRecovery(),
     'error': (context) => const ErrorScreen(),
   };
 

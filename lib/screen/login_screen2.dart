@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:orderflow2/widgets/custom_text_field.dart';
 import 'package:orderflow2/widgets/red_button.dart';
 
-class RegisterScreen extends StatefulWidget {
+class LoginScreen2 extends StatefulWidget {
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen2> createState() => _LoginScreen2State();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreen2State extends State<LoginScreen2> {
   final FocusNode emailFocus = FocusNode();
   final FocusNode passwordFocus = FocusNode();
-  final FocusNode confirmFocus = FocusNode();
 
   @override
   void dispose() {
     emailFocus.dispose();
     passwordFocus.dispose();
-    confirmFocus.dispose();
     super.dispose();
   }
 
-  void _onConfirm() {
-    print('Usuario registrado');
+  void _onLogin() {
+    print('Iniciar sesión');
   }
 
   @override
@@ -108,24 +106,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     label: 'Contraseña',
                     obscureText: true,
                     focusNode: passwordFocus,
-                    textInputAction: TextInputAction.next,
-                    onSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(confirmFocus);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  CustomTextField(
-                    label: 'Confirmar contraseña',
-                    obscureText: true,
-                    focusNode: confirmFocus,
                     textInputAction: TextInputAction.done,
                     onSubmitted: (_) {
-                      _onConfirm();
+                      _onLogin();
                     },
                   ),
                   const SizedBox(height: 30),
-                  RedButton(text: 'Registrarse', onPressed: _onConfirm),
+                  RedButton(text: 'Iniciar sesión', onPressed: _onLogin),
                   const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'password');
+                    },
+                    child: const Text(
+                      '¿Olvidaste tu contraseña?',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

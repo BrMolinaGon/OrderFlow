@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   RedButton(
                     text: 'Iniciar sesión',
                     onPressed: () {
-                      // Acción al presionar "Iniciar sesión"
+                      Navigator.pushNamed(context, 'login2');
                     },
                   ),
                   const SizedBox(height: 20),

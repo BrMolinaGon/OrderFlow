@@ -7,6 +7,9 @@ class CustomTextField extends StatelessWidget {
   final Color textColor;
   final Color underlineColor;
   final double? width;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
+  final void Function(String)? onSubmitted;
 
   const CustomTextField({
     super.key,
@@ -16,6 +19,9 @@ class CustomTextField extends StatelessWidget {
     this.textColor = Colors.black,
     this.underlineColor = const Color(0xFFCCCCCC),
     this.width = 308.01,
+    this.focusNode,
+    this.textInputAction,
+    this.onSubmitted,
   });
 
   @override
@@ -24,6 +30,9 @@ class CustomTextField extends StatelessWidget {
       width: width,
       child: TextField(
         obscureText: obscureText,
+        focusNode: focusNode,
+        textInputAction: textInputAction,
+        onSubmitted: onSubmitted,
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: labelColor),
