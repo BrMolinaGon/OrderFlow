@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {
-                          // Acción al presionar "Regístrate"
+                          Navigator.pushNamed(context, 'register');
                         },
                         child: const Text(
                           'Regístrate',
