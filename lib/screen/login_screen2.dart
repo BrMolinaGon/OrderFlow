@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orderflow2/widgets/custom_text_field.dart';
 import 'package:orderflow2/widgets/red_button.dart';
+import 'package:orderflow2/auth_service.dart';
 
 class LoginScreen2 extends StatefulWidget {
   @override
@@ -10,16 +11,40 @@ class LoginScreen2 extends StatefulWidget {
 class _LoginScreen2State extends State<LoginScreen2> {
   final FocusNode emailFocus = FocusNode();
   final FocusNode passwordFocus = FocusNode();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
     emailFocus.dispose();
     passwordFocus.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
-  void _onLogin() {
-    print('Iniciar sesión');
+  void _onLogin() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Por favor, completa todos los campos')),
+      );
+      return;
+    }
+
+    final user = await _authService.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      Navigator.pushReplacementNamed(context, 'home');
+      //SnackBar(content: Text('Inicio de sesión exitoso'));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Correo o contraseña incorrectos')),
+      );
+    }
   }
 
   @override
@@ -100,6 +125,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                     onSubmitted: (_) {
                       FocusScope.of(context).requestFocus(passwordFocus);
                     },
+                    controller: emailController,
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
@@ -110,6 +136,7 @@ class _LoginScreen2State extends State<LoginScreen2> {
                     onSubmitted: (_) {
                       _onLogin();
                     },
+                    controller: passwordController,
                   ),
                   const SizedBox(height: 30),
                   RedButton(text: 'Iniciar sesión', onPressed: _onLogin),

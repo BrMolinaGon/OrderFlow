@@ -9,6 +9,7 @@ class AppRoutes {
     'login2': (context) => LoginScreen2(),
     'register': (context) => RegisterScreen(),
     'password': (context) => PasswordRecovery(),
+    'home': (context) => HomeScreen(),
     'error': (context) => const ErrorScreen(),
   };
 

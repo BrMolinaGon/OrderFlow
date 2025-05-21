@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.admin.orderflow"
-        minSdk = 23 // <-- Cambiado aquí
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
